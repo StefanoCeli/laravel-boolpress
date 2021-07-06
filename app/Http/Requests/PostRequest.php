@@ -24,8 +24,9 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:10',
-            'content' => 'required|min:5'
+            'title' => 'required|max:30',
+            'content' => 'required|min:5',
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
     public function messages()
@@ -34,7 +35,8 @@ class PostRequest extends FormRequest
             'title.required' => 'inserire un titolo',
             'title.max' => 'inserire massimo :max caratteri',
             'content.required' => 'inserire un testo',
-            'content.min' => 'inserire minimo :min caratteri'
+            'content.min' => 'inserire minimo :min caratteri',
+            'category_id.exists' => 'Nessuna categoria presente con questo valore'
         ];
     }
 }

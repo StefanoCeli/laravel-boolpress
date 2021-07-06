@@ -15,6 +15,7 @@
                 <tr>
                     <th>ID</th>
                     <th>TITLE</th>
+                    <th>CATEGORIES</th>
                     <th>CONTENT</th>
                     <th colspan="3">ACTIONS</th>
                 </tr>
@@ -24,6 +25,7 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td>{{ $post->content }}</td>
                         <td><a class="btn btn-primary" href="{{ route('admin.posts.show',$post) }}">Show</a></td>
                         <td><a class="btn btn-secondary" href="{{ route('admin.posts.edit',$post) }}">Edit</a></td>
@@ -38,6 +40,18 @@
                 @endforeach
             </tbody>
         </table>
+
+        @foreach ($categories as $category )
+            <h3>{{$category->name}}</h3>
+            <ul>
+                @forelse ($category->posts as $post_category )
+                    <li>{{ $post_category->title }}</li>
+                @empty
+                    <li>nessun post presente</li>
+                @endforelse
+            </ul>
+        @endforeach
+
     </div>
 
 @endsection
