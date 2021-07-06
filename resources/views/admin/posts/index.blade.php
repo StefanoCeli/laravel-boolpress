@@ -17,6 +17,7 @@
                     <th>TITLE</th>
                     <th>CATEGORIES</th>
                     <th>CONTENT</th>
+                    <th>TAGS</th>
                     <th colspan="3">ACTIONS</th>
                 </tr>
             </thead>
@@ -27,6 +28,13 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->content }}</td>
+                        <td>
+                            @forelse ($post->tags as $tag )
+                                <span class="badge badge-primary">{{ $tag->name }}</span>
+                            @empty
+                                -
+                            @endforelse
+                        </td>
                         <td><a class="btn btn-primary" href="{{ route('admin.posts.show',$post) }}">Show</a></td>
                         <td><a class="btn btn-secondary" href="{{ route('admin.posts.edit',$post) }}">Edit</a></td>
                         <td>

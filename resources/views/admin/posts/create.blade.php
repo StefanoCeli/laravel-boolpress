@@ -46,6 +46,24 @@
             <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
+
+        <div class="mb-4">
+            <h3>Tags</h3>
+            @foreach ($tags as $tag )
+                <span class="d-inline-block mr-3">
+                    <input type="checkbox" 
+                    id="tag{{ $loop->iteration }}" 
+                    name="tags[]"
+                    value="{{ $tag->id }}"
+                    @if (in_array($tag->id,old('tags',[]))) 
+                    checked     
+                    @endif
+                    >
+                    <label for="tag{{ $loop->iteration }}"> {{ $tag->name}} </label>
+                    </span>
+            @endforeach
+        </div>
+
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-secondary">Reset</button>
