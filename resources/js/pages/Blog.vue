@@ -70,6 +70,7 @@ export default {
     methods:{
 
         getPosts(page = 1){
+          this.loaded = false;
             axios.get('http://127.0.0.1:8000/api/posts',{
                 params:{
                     page:page
@@ -81,13 +82,13 @@ export default {
                         current: res.data.current_page,
                         last: res.data.last_page,
                     }
-                    this.loaded = true
+                    this.loaded = true;
                     console.log(this.posts);
                 })
                 .catch(err =>{
-                    this.loaded = false
+                    this.loaded = false;
                     console.log(err);
-                })
+                });
         },
         formatDate(date){
             let d = new Date(date);
